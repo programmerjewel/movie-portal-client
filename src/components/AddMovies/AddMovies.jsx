@@ -4,6 +4,22 @@ import { Rating } from "react-simple-star-rating";
 const AddMovies = () => {
   const [rating, setRating] = useState(0);
 
+  // Convert rating from a scale of 10 to a scale of 5
+  const normalizeRating = (rating) => {
+    return (parseFloat(rating) / 2).toFixed(2); // Divide by 2 and keep 2 decimal places
+  };
+
+  // Convert rating from a scale of 5 to a scale of 10
+  const denormalizeRating = (rate) => {
+    return (rate * 2).toFixed(1); // Multiply by 2 and keep 1 decimal place
+  };
+
+  // Handle rating change
+  const handleRatingClick = (rate) => {
+    const newRating = denormalizeRating(rate); // Convert back to a scale of 10
+    setRating(newRating); // Update state as a string
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -100,13 +116,13 @@ const AddMovies = () => {
             className="select select-bordered w-full"
              name="genre"
           >
-            <option value="comedy">Comedy</option>
-            <option value="drama">Drama</option>
-            <option value="horror">Horror</option>
-            <option value="action">Action</option>
-            <option value="sci-fi">Sci-Fi</option>
-            <option value="documentary">Documentary</option>
-            <option value="thriller">Thriller</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Drama">Drama</option>
+            <option value="Horror">Horror</option>
+            <option value="Action">Action</option>
+            <option value="Sci-Fi">Sci-Fi</option>
+            <option value="Documentary">Documentary</option>
+            <option value="Thriller">Thriller</option>
           </select>
         </div>
        
@@ -138,17 +154,17 @@ const AddMovies = () => {
             ))}
           </select>
         </div>
-
-        {/* Rating */}
+        
+        {/* rating */}
         <div className="w-3/4 mx-auto">
           <label className="label">
             <span className="label-text">Rating</span>
           </label>
           <div className="w-full">
             <Rating
-              onClick={(rate) => setRating(rate)}
-              ratingValue={rating}
-              name="rating"
+              onClick={handleRatingClick} // Handle rating selection
+              ratingValue={normalizeRating(rating)} // Normalize to a scale of 5
+              allowHalfIcon // Allow fractional stars
               size={25}
               transition
               fillColor="orange"
@@ -157,7 +173,8 @@ const AddMovies = () => {
               SVGstyle={{ display: "inline" }}
             />
           </div>
-        </div>
+          <p className="mt-2">Selected Rating: {rating} / 10</p> {/* Display the rating as a string out of 10 */}
+          </div>
 
         {/* Summary */}
         <div className="w-3/4 mx-auto">
