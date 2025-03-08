@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import Movie from "../Movie/Movie";
+import Movie from "../MovieDetail/MovieDetail";
 
 
 const AllMovies = () => {

@@ -51,7 +51,7 @@ const AddMovies = () => {
       movieRating
     );
 
-    fetch("http://localhost:5000/addmovie", {
+    fetch("http://localhost:5000/movie", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -154,7 +154,7 @@ const AddMovies = () => {
             ))}
           </select>
         </div>
-        
+
         {/* rating */}
         <div className="w-3/4 mx-auto">
           <label className="label">

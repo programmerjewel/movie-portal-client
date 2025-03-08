@@ -1,6 +1,6 @@
 
 
-const Movie = (props = {}) => {
+const MovieDetail = (props = {}) => {
   const { movie } = props || {};
 
 
@@ -17,4 +17,4 @@ const Movie = (props = {}) => {
   );
 };
 
-export default Movie;
+export default MovieDetail;
